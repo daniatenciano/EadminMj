@@ -21,6 +21,6 @@ public class Documento extends ElementoBaseAdministracionElectronica {
 		return "Documento con código " + codigo;
 	}
 	
-	//prueba
+	//prueba1
 	
 }
