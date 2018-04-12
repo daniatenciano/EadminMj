@@ -8,8 +8,8 @@
 			codigo, 
 			nombre, 
 			fechaCreacion, 
-			fechaUltimaModficacion, 
-			esPublico, 
+			fechaUltimaModificacion, 
+			publico, 
 			tipo, 
 			estadoDocumento) 
 		VALUES(
@@ -17,10 +17,36 @@
 			#{documento.nombre},
 			#{documento.fechaCreacion},
 			#{documento.fechaUltimaModificacion},
-			#{documento.esPublico},
+			#{documento.publico},
 			1,
 			#{documento.estado.codigo})
-	
 	</insert>
+
+	<update id="actualizarDocumento">
+	
+	UPDATE ELEMENTO
+	SET 
+	codigo=#{documento.codigo},
+	nombre=#{documento.nombre},
+	fechaCreacion=#{documento.fechaCreacion},
+	fechaUltimaModificacion=#{documento.fechaUltimaModificacion},
+	publico=#{documento.publico},
+	tipo=1,
+	estadoDocumento=#{documento.estado.codigo}
+	where codigo = 1
+	
+	</update>
+
+
+	<delete id = "eliminarDocumento">
+	DELETE FROM ELEMENTO where codigo = codigo
+	</delete>
+	
+	<select id= "selectDocumento">
+	SELECT codigo,nombre,fechaCreacion,fechaUltimaModificacion,publico,tipo,estadoDocumento
+	FROM ELEMENTO
+	WHERE codigo = codigo
+
+	</select>
 
 </mapper>
