@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.fpdual.eadmin.eadmin.modelo.Documento;
 import es.fpdual.eadmin.eadmin.modelo.EstadoDocumento;
-import es.fpual.eadmin.eadmin.util.Utilidades;
+import es.fpdual.eadmin.eadmin.util.Utilidades;
 
 
 @Transactional("eadminTransactionManager")
@@ -52,9 +52,9 @@ public abstract class BaseDocumentoMapperTest {
 				// DECLARACION
 
 				// ENTRENAMIENTO
-
+		 	this.mapper.insertarDocumento(documento1);
 				// EJECUCION
-			    this.mapper.insertarDocumento(documento1);
+			   
 				final int resultado = this.mapper.eliminarDocumento(1); 
 
 				// VERIFICACION
@@ -65,32 +65,41 @@ public abstract class BaseDocumentoMapperTest {
 	@Test
 	public void deberiaActualizarTodosLosCamposDeUnDocumento() throws Exception {
 		// DECLARACION
-		Documento documentoActualizado = new Documento(1, "documento mod", Utilidades.asDate(LocalDate.of(2015, 11, 13)),Utilidades.asDate(LocalDate.of(2015, 1, 29)), true, EstadoDocumento.ACTIVO);
+		Documento documentoActualizado = new Documento(1, "documento mod", Utilidades.asDate(LocalDate.of(2015, 11, 13)),
+				Utilidades.asDate(LocalDate.of(2015, 1, 29)), true, EstadoDocumento.ACTIVO);
 		// ENTRENAMIENTO
 
 		// EJECUCION
-		 this.mapper.insertarDocumento(documento1);
-		final int resultado = this.mapper.actualizarDocumento(documento1); 
+		 this.mapper.insertarDocumento(this.documento1);
+		final int resultado = this.mapper.actualizarDocumento(documentoActualizado); 
 		
 		// VERIFICACION
 		assertThat(resultado, is(1));
+		final Documento documentoModificado = this.mapper.selectDocumento(1);
+		assertThat(documentoModificado, is(documentoActualizado));
 	}
 	
+
 	
+//	@Test
+//	public void deberiaRecuperarDocumentoPorCodigo() throws Exception {
+//		
+//	}
 	
+		
 	@Test
 	public void deberiaSeleccionarDocumento() throws Exception  {
 		// DECLARACION
-
+		Documento docume;
 		// ENTRENAMIENTO
-
-		// EJECUCION
 		 this.mapper.insertarDocumento(documento1);
-		final int resultado = this.mapper.selectDocumento(documento1); 
+		// EJECUCION
+		
+		docume = mapper.selectDocumento(1); 
 
 		// VERIFICACION
-		assertThat(resultado, is(1));
+		assertThat(docume, is(documento1));
+
 	}
-	
 
 }

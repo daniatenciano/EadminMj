@@ -1,4 +1,4 @@
-package es.fpual.eadmin.eadmin.util;
+package es.fpdual.eadmin.eadmin.util;
 
 import java.util.Date;
 import java.time.LocalDate;

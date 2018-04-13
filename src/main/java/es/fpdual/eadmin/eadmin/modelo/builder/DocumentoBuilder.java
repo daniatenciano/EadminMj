@@ -52,7 +52,7 @@ public class DocumentoBuilder {
 		this.codigo = documento.getCodigo();
 		this.nombre = documento.getNombre();
 		this.fechaCreacion = documento.getFechaCreacion();
-		this.fechaUltimaActualizacion = documento.getFechaUltimaActualizacion();
+		this.fechaUltimaActualizacion = documento.getFechaUltimaModificacion();
 		this.publico = documento.getPublico();
 		this.estado = documento.getEstado();
 		return this;

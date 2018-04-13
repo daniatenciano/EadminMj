@@ -42,10 +42,28 @@
 	DELETE FROM ELEMENTO where codigo = codigo
 	</delete>
 	
-	<select id= "selectDocumento">
-	SELECT codigo,nombre,fechaCreacion,fechaUltimaModificacion,publico,tipo,estadoDocumento
+	<resultMap type="es.fpdual.eadmin.eadmin.modelo.Documento" id="map">
+	
+	
+	
+	<constructor>
+	<idArg column="codigo" javaType="Integer" />
+	<arg column="nombre" javaType="String" />
+	<arg column="fechaCreacion" javaType="Date" />
+	<arg column="fechaUltimaModificacion" javaType="Date" />
+	<arg column="publico" javaType="Boolean" />
+	<arg column="estadoDocumento" javaType="Integer" />
+	</constructor>
+	</resultMap>
+
+	
+	
+	
+		<select id= "selectDocumento" resultMap="map">
+	SELECT 
+	codigo,nombre,fechaCreacion,fechaUltimaModificacion,publico,estadoDocumento,tipo
 	FROM ELEMENTO
-	WHERE codigo = codigo
+	WHERE codigo = #{codigo}
 
 	</select>
 
