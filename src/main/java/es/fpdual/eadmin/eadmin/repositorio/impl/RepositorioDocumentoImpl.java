@@ -40,7 +40,7 @@ public class RepositorioDocumentoImpl implements RepositorioDocumento {
 	@Override
 	public void modificarDocumento(Documento documento) {
 
-		int modificado = this.mapper.modificarDocumento(documento);
+		final int modificado = this.mapper.modificarDocumento(documento);
 		
 		if(modificado == 0) {
 			throw new IllegalArgumentException("No se encuentra el documento");
