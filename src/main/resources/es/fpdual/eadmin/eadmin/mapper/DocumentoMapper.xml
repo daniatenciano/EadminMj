@@ -42,7 +42,7 @@
 	DELETE FROM ELEMENTO where codigo = codigo
 	</delete>
 	
-	<resultMap type="es.fpdual.eadmin.eadmin.modelo.Documento" id="map">
+	<resultMap type="es.fpdual.eadmin.eadmin.modelo.Documento" id="documentoResultMap">
 	
 	
 	
@@ -52,19 +52,43 @@
 	<arg column="fechaCreacion" javaType="Date" />
 	<arg column="fechaUltimaModificacion" javaType="Date" />
 	<arg column="publico" javaType="Boolean" />
-	<arg column="estadoDocumento" javaType="Integer" />
+	<arg column="estadoDocumento" javaType="es.fpdual.eadmin.eadmin.modelo.EstadoDocumento" />
 	</constructor>
 	</resultMap>
 
+
 	
+	<select id="seleccionarTodosLosDocumentos" resultMap = "documentoResultMap">
 	
-	
-		<select id= "selectDocumento" resultMap="map">
-	SELECT 
-	codigo,nombre,fechaCreacion,fechaUltimaModificacion,publico,estadoDocumento,tipo
-	FROM ELEMENTO
-	WHERE codigo = #{codigo}
+	<include refid="baseSelectDocumento"/> 
 
 	</select>
 
+	<sql id="baseSelectDocumento">
+	
+	SELECT codigo,
+		nombre,
+		fechaCreacion,
+		fechaUltimaModificacion,
+		publico,
+		estadoDocumento
+	FROM Elemento
+	WHERE tipo = 1
+	
+	</sql>
+	
+	
+		<select id= "selectDocumento" resultMap="documentoResultMap">
+		
+		<include refid="baseSelectDocumento"/> and codigo = #{codigo}
+
+	</select>
+	
+	<select id="recuperarTodosLosDocumentos" resultMap = "documentoResultMap">
+	
+	<include refid="baseSelectDocumento"/> 
+
+	</select>
+	
+	
 </mapper>

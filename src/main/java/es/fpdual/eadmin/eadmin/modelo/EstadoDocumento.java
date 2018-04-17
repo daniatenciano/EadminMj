@@ -17,10 +17,11 @@ public enum EstadoDocumento {
 		return this.codigo;
 	}
 	
-//	public static EstadoDocumento obtenerCodigo(Integer codigo) {
-//		return Arrays.asList(EstadoDocumento.values()).stream()
-//		.filter(codigoLista ->codigoLista.getCodigo() == codigo.intValue()).findAny().orElse(null);
-//	}
-	
+	public static EstadoDocumento obtenerPorCodigo(Integer codigo) {
+
+		return (EstadoDocumento) Arrays.asList(EstadoDocumento.values()).stream()
+				.filter(codigoLista -> ((EstadoDocumento) codigoLista)
+				.getCodigo() == codigo.intValue()).findAny().orElse(null);
+	}
 	
 }

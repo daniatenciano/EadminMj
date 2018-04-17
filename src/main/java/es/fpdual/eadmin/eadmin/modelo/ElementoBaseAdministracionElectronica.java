@@ -65,6 +65,7 @@ public abstract  class ElementoBaseAdministracionElectronica {
 	public int hashCode() {
 		final HashCodeBuilder hashCodeBuilder = new HashCodeBuilder();
 		
+		
 		hashCodeBuilder.append(this.codigo);
 		hashCodeBuilder.append(this.nombre);
 		hashCodeBuilder.append(this.fechaCreacion);
